@@ -49,3 +49,22 @@ def snr(original, noisy):
     original_var = np.var(original)
     noise_var = np.var(noisy)
     return 10 * log10(original_var/noise_var)
+
+def mse(original, new):
+    (n, m) = original.shape
+    diff = original - new
+    error = np.sum(np.square(diff))
+    return error / float(m * n)
+
+def circle_mask(img, radius):
+    (n, m) = img.shape
+    # Find center of image
+    center = (m/2, n/2)
+    # Generate indices for all coordinates in the image
+    idy, idx = np.ogrid[:n, :m]
+    # Calculate distances between indices and the image center
+    distances = np.sqrt((idx - center[0])**2 + (idy - center[1])**2)
+    # Create a mask for indices within the given radius
+    mask = distances <= (n / radius)
+    # Apply mask to the given image and return
+    return np.multiply(mask, img)

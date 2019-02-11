@@ -2,7 +2,7 @@ import numpy as np
 import cv2
 from skimage.util import random_noise
 import matplotlib
-from filters import conv, median, snr
+from utils import conv, median, snr
 
 EXPORT_IMAGES = False
 
