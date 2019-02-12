@@ -68,3 +68,8 @@ def circle_mask(img, radius):
     mask = distances <= (n / radius)
     # Apply mask to the given image and return
     return np.multiply(mask, img)
+
+def threshold(img, thresh):
+    img[img < thresh] = 0
+    img[img >= thresh] = 255
+    return img
